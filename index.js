@@ -73,7 +73,10 @@ function displayNextQuestion () {
 
                    id="referstoID3"
 
-                   value="thisCorrespondsToIndividualElement"/>
+                   value="thisCorrespondsToIndividualElement"
+                   
+                   required
+            />
 
             <label for="referstoID3">Answer text 3 goes here</label>
 
