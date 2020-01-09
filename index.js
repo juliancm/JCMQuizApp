@@ -1,3 +1,5 @@
+let score = 0;
+
 function test () {
     console.log('chicken');
     $('.contentDisplay').html(`
@@ -5,11 +7,13 @@ function test () {
         <h2>Welcome to the Bicycle Quiz!</h2>
         <p>Think you know everything about bicycles?</p>
     </section>
-    `);
-    $('.alertArea').html(`
+    <br>
     <form>
         <button type="startQuiz" class="startQuiz">Start Quiz</button>
     </form>
+    `);
+    $('.alertArea').html(`
+    <p>Good Luck!</p>
     `);
 }
 
@@ -17,9 +21,7 @@ function startQuizClick () {
     $('.startQuiz').on('click', function(event) {
         event.preventDefault();
         $('.contentDisplay').html(displayNextQuestion());
-        $('.alertArea').html(`
-        
-        `)
+        $('.alertArea').html(displayScore());
     });
 }
 
@@ -75,11 +77,45 @@ function displayNextQuestion () {
 
             <label for="referstoID3">Answer text 3 goes here</label>
 
+            <br>
 
+            <button type="submit" class="submitAnswer"> Submit</button>
 
         </fieldset>
     </form>
 `);
+    submitAnswerClick();
+}
+
+function displayScore() {
+    $('.alertArea').html(`
+    <p>Hello Errybody This is Your Score</p>
+    `);
+}
+
+function submitAnswerClick () {
+    $('.submitAnswer').on('click', function(event) {
+        event.preventDefault();
+        $('.contentDisplay').html(displayFeedback());
+        $('.alertArea').html(displayScore());
+    });
+}
+
+function displayFeedback() {
+    $('.contentDisplay').html(`
+    <p>Good Job</p>
+    <form>
+        <button type="nextQuestion" class="nextQuestion">Next Question</button>
+    </form>
+    `);
+    nextQuestionClick();
+}
+
+function nextQuestionClick () {
+    $('.nextQuestion').on('click', function(event) {
+        event.preventDefault();
+        $('.contentDisplay').html(displayNextQuestion());
+    });
 }
 
 function callBack () {
