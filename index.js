@@ -1,4 +1,4 @@
-let score = 0;
+let score = 1;
 
 function test () {
     console.log('chicken');
@@ -88,20 +88,12 @@ function displayNextQuestion () {
     </form>
 `);
     submitAnswerClick();
-}
-
-function validateSubmission () {
-    if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val()===undefined) {
-        console.log('choose something');
-    }
-    else {
-        submitAnswerClick();
-    }
+    $('.alertArea').html(displayScore());
 }
 
 function displayScore() {
     $('.alertArea').html(`
-    <p>Hello Errybody This is Your Score</p>
+    <p>you are on question number ${score}</p>
     `);
 }
 
