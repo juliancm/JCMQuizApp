@@ -115,6 +115,7 @@ function submitAnswerClick () {
         event.preventDefault();
         if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === undefined) {
             console.log('choose something');
+            $('.contentDisplay').append('<p>choose something!</p>');
         } else {
             console.log($('input[name=possibleAnswerTextOrIdForJs]:checked').val());
             $('.contentDisplay').html(displayFeedback());
@@ -147,5 +148,3 @@ function callBack () {
 }
 
 callBack();
-
-/*need to prevent default behavor for submit button*/
