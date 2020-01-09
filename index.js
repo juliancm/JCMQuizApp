@@ -5,7 +5,12 @@ function test () {
         <h2>Welcome to the Bicycle Quiz!</h2>
         <p>Think you know everything about bicycles?</p>
     </section>
-    `)
+    `);
+    $('.alertArea').html(`
+    <form>
+        <button type="startQuiz" class="startQuiz">Start Quiz</button>
+    </form>
+    `);
 }
 
 function startQuizClick () {
