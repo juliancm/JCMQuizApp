@@ -41,12 +41,6 @@ footer {
     padding: 10px;
 }
 
-
-.alertArea2 {
-    display: none;
-}
-
-
 @media only screen and (min-width: 640px) {
     /*addmodifiableselectorshere*/ {
         width: 100%;

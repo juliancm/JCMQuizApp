@@ -14,85 +14,20 @@
 <header role="dashboard" class="scoreCount"><h1>Welcome To this Great Quiz!</h1></header>
 <main role="content" class="contentDisplay">
 
-
-    <!-- wireframe question view, html to move into script
-     ALSO  a note  about the name variabe, it groups the items in a set
-     must be set equal for radio buttons-->
-
-
-    <form>
-        <fieldset class="answerDisplay">
-            <legend>Quiz Intro/Questions goes here/Right or Wrong Answer notification goes here</legend>
-
-            <label>Choose one option: </label>
-
-            <br>
-
-            <input type="radio"
-
-                   name="possibleAnswerTextOrIdForJs"
-
-                   id="referstoID"
-
-                   value="thisCorrespondsToIndividualElement"
-
-                   required
-
-            />
-            <!--- the name attribute needs to match all others in fieldset --->
-            <label for="referstoID">Answer text 1 goes here</label>
-
-            <br>
-
-            <input type="radio"
-
-                   name="possibleAnswerTextOrIdForJs"
-
-                   id="referstoID2"
-
-                   value="thisCorrespondsToIndividualElement"
-
-                   required
-            />
-<!-- name gets sent back for the input block </> --->
-
-            <label for="referstoID2">Answer text 2 goes here</label>
-
-            <br>
-
-            <input type="radio"
-
-                   name="possibleAnswerTextOrIdForJs"
-
-                   id="referstoID3"
-
-                   value="thisCorrespondsToIndividualElement"/>
-
-            <label for="referstoID3">Answer text 3 goes here</label>
-
-            <br>
-
-            <button type="submit" class="submitAnswer"> Submit</button>
-
-        </fieldset>
-    </form>
-
-
-    <!--wireframe begin and end screen, html to move into script -->
-
-    <script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="index.js"></script>
-
-
 </main>
 <br>
-<footer role="notification" class="alertArea">5 of 10 correct! Keep up the good Work!</footer>
+<footer role="notification" class="alertArea">
+    <form>
+        <button type="startQuiz" class="startQuiz">Start Quiz</button>
+    </form>
+</footer>
 <br>
 <a href="feedbackview.html">Feedback View</a>
 <br>
-<a href="startview.html">Start View</a>
+<a href="index.html">Question View</a>
 <br>
 <a href="restart.html">Restart View</a>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="index.js"></script>
 </body>
 </html>
