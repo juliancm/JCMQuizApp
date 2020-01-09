@@ -41,7 +41,7 @@ function displayNextQuestion () {
 
                    id="referstoID"
 
-                   value="thisCorrespondsToIndividualElement"
+                   value="option1"
 
                    required
 
@@ -57,7 +57,7 @@ function displayNextQuestion () {
 
                    id="referstoID2"
 
-                   value="thisCorrespondsToIndividualElement"
+                   value="option2"
 
                    required
             />
@@ -73,7 +73,7 @@ function displayNextQuestion () {
 
                    id="referstoID3"
 
-                   value="thisCorrespondsToIndividualElement"
+                   value="option3"
                    
                    required
             />
@@ -90,18 +90,37 @@ function displayNextQuestion () {
     submitAnswerClick();
 }
 
+function validateSubmission () {
+    if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val()===undefined) {
+        console.log('choose something');
+    }
+    else {
+        submitAnswerClick();
+    }
+}
+
 function displayScore() {
     $('.alertArea').html(`
     <p>Hello Errybody This is Your Score</p>
     `);
 }
 
+function updateScore() {
+    score++;
+    console.log(score);
+}
+
 function submitAnswerClick () {
     $('.submitAnswer').on('click', function(event) {
         event.preventDefault();
+        if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val()===undefined) {
+            console.log('choose something');
+        }
+        else {
+        console.log($('input[name=possibleAnswerTextOrIdForJs]:checked').val());
         $('.contentDisplay').html(displayFeedback());
         $('.alertArea').html(displayScore());
-    });
+        updateScore();});
 }
 
 function displayFeedback() {
