@@ -113,14 +113,15 @@ function updateScore() {
 function submitAnswerClick () {
     $('.submitAnswer').on('click', function(event) {
         event.preventDefault();
-        if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val()===undefined) {
+        if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === undefined) {
             console.log('choose something');
+        } else {
+            console.log($('input[name=possibleAnswerTextOrIdForJs]:checked').val());
+            $('.contentDisplay').html(displayFeedback());
+            $('.alertArea').html(displayScore());
+            updateScore();
         }
-        else {
-        console.log($('input[name=possibleAnswerTextOrIdForJs]:checked').val());
-        $('.contentDisplay').html(displayFeedback());
-        $('.alertArea').html(displayScore());
-        updateScore();});
+    })
 }
 
 function displayFeedback() {
