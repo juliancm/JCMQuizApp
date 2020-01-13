@@ -116,6 +116,7 @@ function verifyAnswer () {
     if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === STORE[score].answer) {
         $('.contentDisplay').html(`
              <p>Good Job "${STORE[score].answer}" is right!</p>
+             <img alt="${STORE[score].answer}" src="images/${score+1}.jpg" width="200" height="200">
              <form>
                  <button type="nextQuestion" class="nextQuestion">Next Question</button>
              </form>
@@ -124,15 +125,12 @@ function verifyAnswer () {
     } else {
         $('.contentDisplay').html(`
             <p>Nope, it's actually ${STORE[score].answer}</p>
+            <img alt="${STORE[score].answer}" src="images/${score+1}.jpg" width="200" height="200">
             <form>
                  <button type="nextQuestion" class="nextQuestion">Next Question</button>
             </form>
         `);
     }
-    $('.contentDisplay').append(`
-        <img alt="${STORE[score].answer}" src="images/${score+1}.jpg"
-         width="200" height="200">
-    `)
 }
 
 function displayRestart() {
