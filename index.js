@@ -28,6 +28,8 @@ function test () {
             <h2>Welcome to the Bicycle Quiz!</h2>
             <p>Think you know everything about bicycles?</p>
         </section>
+        <img alt="cyclists climbing a hill" src="images/start.jpg"
+         width="200" height="200">
         <br>
         <form>
             <button type="startQuiz" class="startQuiz">Start Quiz</button>
@@ -113,7 +115,7 @@ function submitAnswerClick () {
 function verifyAnswer () {
     if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === STORE[score].answer) {
         $('.contentDisplay').html(`
-             <p>Good Job ${STORE[score].answer} is right!</p>
+             <p>Good Job "${STORE[score].answer}" is right!</p>
              <form>
                  <button type="nextQuestion" class="nextQuestion">Next Question</button>
              </form>
@@ -128,7 +130,7 @@ function verifyAnswer () {
         `);
     }
     $('.contentDisplay').append(`
-        <img alt="${STORE[score].answer}" src="../images/${score+1}.jpg"
+        <img alt="${STORE[score].answer}" src="images/${score+1}.jpg"
          width="200" height="200">
     `)
 }
@@ -138,6 +140,8 @@ function displayRestart() {
         <section>
             <h2>You got ${right}/${STORE.length} correct!</h2>
             <p>Want to try again?</p>
+            <img alt="cyclists on top of a hill" src="images/end.jpg"
+         width="200" height="200">
             <form>
                 <button type="restartQuiz" class="restartQuiz">Restart Quiz</button>
             </form>
