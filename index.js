@@ -1,4 +1,25 @@
-let score = 1;
+const STORE = [
+    {
+        question: 'who',
+        options: [
+            'chicken', 'taco', 'beef'
+        ],
+        answer: 'chicken'
+        /*obj with question, answers (in a string), and correct choice*/
+    },
+    {
+        question: 'what',
+        options: [
+            'sauce', 'juice', 'monkey'
+        ],
+        answer: 'juice'
+        /*each question is it's own object in a string*/
+    }
+];
+
+
+let score = 0;
+let right = 0;
 
 function test () {
     console.log('chicken');
@@ -15,6 +36,7 @@ function test () {
     $('.alertArea').html(`
     <p>Good Luck!</p>
     `);
+    startQuizClick();
 }
 
 function startQuizClick () {
@@ -29,71 +51,50 @@ function displayNextQuestion () {
     $('.contentDisplay').html(`
         <form>
         <fieldset class="answerDisplay">
-            <legend>Quiz Intro/Questions goes here/Right or Wrong Answer notification goes here</legend>
+            <legend>${STORE[score].question}</legend>
 
             <label>Choose one option: </label>
 
             <br>
+`);
+    createOptionList();
+    submitAnswerClick();
+    $('.alertArea').html(displayScore());
+}
 
-            <input type="radio"
-
-                   name="possibleAnswerTextOrIdForJs"
-
-                   id="referstoID"
-
-                   value="option1"
-
-                   required
-
-            />
-            <!--- the name attribute needs to match all others in fieldset --->
-            <label for="referstoID">Answer text 1 goes here</label>
-
-            <br>
-
-            <input type="radio"
+function createOptionList() {
+    for (i = 0; i<STORE[score].options.length; i++) {
+        $('.contentDisplay').append(
+        `<input type="radio"
 
                    name="possibleAnswerTextOrIdForJs"
 
                    id="referstoID2"
 
-                   value="option2"
+                   value="${STORE[score].options[i]}"
 
                    required
             />
             <!-- name gets sent back for the input block </> --->
 
-            <label for="referstoID2">Answer text 2 goes here</label>
+            <label for="referstoID2">${STORE[score].options[i]}</label>
 
             <br>
+        `);}
+    addSubmitButton();
+}
 
-            <input type="radio"
+function addSubmitButton(){
 
-                   name="possibleAnswerTextOrIdForJs"
-
-                   id="referstoID3"
-
-                   value="option3"
-                   
-                   required
-            />
-
-            <label for="referstoID3">Answer text 3 goes here</label>
-
-            <br>
-
-            <button type="submit" class="submitAnswer"> Submit</button>
+    $('.contentDisplay').append(`<button type="submit" class="submitAnswer"> Submit</button>
 
         </fieldset>
-    </form>
-`);
-    submitAnswerClick();
-    $('.alertArea').html(displayScore());
+        </form>`);
 }
 
 function displayScore() {
     $('.alertArea').html(`
-    <p>you are on question number ${score}</p>
+    <p>you are on question number ${score+1}/${STORE.length} you have ${right} correct!</p>
     `);
 }
 
@@ -106,37 +107,71 @@ function submitAnswerClick () {
     $('.submitAnswer').on('click', function(event) {
         event.preventDefault();
         if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === undefined) {
-            console.log('choose something');
             $('.contentDisplay').append('<p>choose something!</p>');
         } else {
-            console.log($('input[name=possibleAnswerTextOrIdForJs]:checked').val());
-            $('.contentDisplay').html(displayFeedback());
-            $('.alertArea').html(displayScore());
+            verifyAnswer();
+            $('.alertArea').html(displayScore())
             updateScore();
+            nextQuestionClick();
         }
     })
 }
 
-function displayFeedback() {
-    $('.contentDisplay').html(`
+function verifyAnswer () {
+    if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === STORE[score].answer) {
+        $('.contentDisplay').html(`
     <p>Good Job</p>
     <form>
         <button type="nextQuestion" class="nextQuestion">Next Question</button>
     </form>
     `);
-    nextQuestionClick();
+        right++;
+    } else {
+        $('.contentDisplay').html(`
+    <p>Nope, it's actually ${STORE[score].answer}</p>
+    <form>
+        <button type="nextQuestion" class="nextQuestion">Next Question</button>
+    </form>
+    `);
+    }
+}
+
+function displayRestart() {
+    $('.contentDisplay').html(
+        `    <section>
+        <h2>Welcome to the Bicycle Quiz!</h2>
+        <p>Good Job, want to try again?</p>
+        <form>
+            <button type="restartQuiz" class="restartQuiz">Restart Quiz</button>
+        </form>
+    </section>`
+    );
+    restartQuizClick();
+}
+
+function restartQuizClick (){
+    $('.restartQuiz').on('click', function(event) {
+        event.preventDefault();
+        score = 0;
+        right = 0;
+        test();
+    });
 }
 
 function nextQuestionClick () {
     $('.nextQuestion').on('click', function(event) {
         event.preventDefault();
-        $('.contentDisplay').html(displayNextQuestion());
+        if (score < STORE.length) {
+            $('.contentDisplay').html(displayNextQuestion());
+        }
+        else {
+            displayRestart();
+        };
     });
 }
 
 function callBack () {
     test ();
-    startQuizClick();
 }
 
 callBack();
