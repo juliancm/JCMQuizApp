@@ -3,9 +3,9 @@
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     color: black;
-    margin: 30px;
+    margin: auto;
     /* background:cover;
     background-image:url("%%%%%%");*/
     background-color: lightblue;
@@ -17,8 +17,8 @@ header {
 }
 
 h1 {
-    line-height: 70px;
-    font-size: 40px;
+    line-height: 100px;
+    font-size: 50px;
 }
 
 .contentDisplay {
@@ -27,6 +27,7 @@ h1 {
     width: 300px;
     padding: 10px;
     border: 2px solid black;
+    border-radius: 15px;
     margin: 0 auto;
     line-height: 40px;
     text-align: center;
@@ -37,15 +38,22 @@ footer {
     display: block;
     line-height: 40px;
     border: 2px solid black;
+    border-radius: 15px;
     margin: 0 auto;
-    width: 400px;
+    width: 350px;
     padding: 10px;
     text-align: center;
     background-color: aliceblue;
 }
 
-@media only screen and (min-width: 640px) {
-    /*addmodifiableselectorshere*/ {
-        width: 100%;
+@media only screen and (max-width: 400px) {
+    h1 {
+        font-size: 40px;
+    }
+    .contentDisplay {
+        width: 250px;
+    }
+    footer {
+        width: 300px;
     }
 }

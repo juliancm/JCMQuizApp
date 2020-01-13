@@ -1,19 +1,59 @@
 const STORE = [
     {
-        question: 'who',
+        question: 'Bicycles come in many forms. What are some common ones used today?',
         options: [
-            'chicken', 'taco', 'beef'
+            'Mountain, Road, Recumbent.', 'Penny Farthing, Road, BMX.', 'Mountain, Road, BMX.', 'Recumbent, BMX, Mountain.'
         ],
-        answer: 'chicken'
-        /*obj with question, answers (in a string), and correct choice*/
+        answer: 'Mountain, Road, BMX.'
     },
     {
-        question: 'what',
+        question: 'Oil and grease are used differently. What are the uses for each?',
         options: [
-            'sauce', 'juice', 'monkey'
+            'Oil is for sautéeing; grease is for combustion.', 'Oil is for sealed components; grease is for exposed components.', 'Oil is for exposed components; grease is for sealed components.','Trick question; oil and grease are interchangeable.'
         ],
-        answer: 'juice'
-        /*each question is it's own object in a string*/
+        answer: 'Oil is for exposed components; grease is for sealed components.'
+    },
+    {
+        question: 'In competitive cycling there are three grand tours. What are they?',
+        options: [
+            'Tour de France, Vuelta a España, Paris–Roubaix.', 'Vuelta a España, Critérium du Dauphiné, Giro d\'Italia.', 'Tour de France, Paris–Roubaix, Critérium du Dauphiné.','Tour de France, Vuelta a España, Giro d\'Italia.'
+        ],
+        answer: 'Tour de France, Vuelta a España, Giro d\'Italia.'
+    },
+    {
+        question: 'Who won (general classification) the 2019 Tour de France?',
+        options: [
+            'Egan Bernal', 'Peter Sagan', 'Gareth Bale','Julian Alaphilippe'
+        ],
+        answer: 'Egan Bernal'
+    },
+    {
+        question: 'The act of lowering wind resistance by riding in formation is called?',
+        options: [
+            'Drifting', 'Slipstreaming', 'Drafting','Migration'
+        ],
+        answer: 'Drafting'
+    },
+    {
+        question: 'What kind of venue is used for indoor cycling races?',
+        options: [
+            'Velodrome', 'Criterium', 'Peloton','Combini'
+        ],
+        answer: 'Velodrome'
+    },
+    {
+        question: 'What are the two most common valve types?',
+        options: [
+            'Presta, Phillips', 'Schneider, Phillips', 'Prego, Ragu','Schrader, Presta'
+        ],
+        answer: 'Schrader, Presta'
+    },
+    {
+        question: 'Pee-wee Herman was famous for having what color bike?',
+        options: [
+            'Green', 'Red', 'Blue','Sparkle'
+        ],
+        answer: 'Red'
     }
 ];
 
@@ -22,7 +62,6 @@ let score = 0;
 let right = 0;
 
 function test () {
-    console.log('chicken');
     $('.contentDisplay').html(`
         <section>
             <h2>Welcome to the Bicycle Quiz!</h2>
@@ -69,11 +108,11 @@ function createOptionList() {
         $('.contentDisplay').append(`
             <input type="radio"
                    name="possibleAnswerTextOrIdForJs"
-                   id="referstoID2"
+                   id="referstolabel"
                    value="${STORE[score].options[i]}"
                    required
             />
-            <label for="referstoID2">${STORE[score].options[i]}</label>
+            <label for="referstolabel">${STORE[score].options[i]}</label>
             <br>
         `);
     }
@@ -124,7 +163,7 @@ function verifyAnswer () {
         right++;
     } else {
         $('.contentDisplay').html(`
-            <p>Nope, it's actually ${STORE[score].answer}</p>
+            <p>Nope, it's actually "${STORE[score].answer}"</p>
             <img alt="${STORE[score].answer}" src="images/${score+1}.jpg" width="200" height="200">
             <form>
                  <button type="nextQuestion" class="nextQuestion">Next Question</button>
