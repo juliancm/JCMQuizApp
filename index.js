@@ -57,21 +57,23 @@ const STORE = [
     }
 ];
 
+const loggers = {
+    question: 0,
+    score: 0
+}
 
-let score = 0;
-let right = 0;
+let current = loggers.question;
+let right = loggers.score;
 
-function test () {
+function startQuiz () {
     $('.contentDisplay').html(`
         <section>
-            <h2>Welcome to the Bicycle Quiz!</h2>
+            <p class="headline">Welcome to the Bicycle Quiz!</p>
             <p>Think you know everything about bicycles?</p>
         </section>
-        <img alt="cyclists climbing a hill" src="images/start.jpg"
-         width="200" height="200">
-        <br>
+        <img class="image" alt="cyclists climbing a hill" src="images/start.jpg">
         <form>
-            <button type="startQuiz" class="startQuiz">Start Quiz</button>
+            <button type="button" class="startQuiz button">Start</button>
         </form>
     `);
     $('.alertArea').html(`
@@ -91,29 +93,30 @@ function startQuizClick () {
 function displayNextQuestion () {
     $('.contentDisplay').html(`
         <form>
-        <fieldset class="answerDisplay">
-            <legend>${STORE[score].question}</legend>
-
-            <label>Choose one option: </label>
-
-            <br>
+            <fieldset>
+                <section class="headline question"><legend><h2>${STORE[current].question}</h2></legend></section>
+                <label class="option-prompt">Choose one option:</label>
     `);
-    createOptionList();
+    addOptionList();
     submitAnswerClick();
     $('.alertArea').html(displayScore());
 }
 
-function createOptionList() {
-    for (i = 0; i<STORE[score].options.length; i++) {
+function addOptionList() {
+    for (i = 0; i<STORE[current].options.length; i++) {
+
+        /* fieldset and legend opening and closing tags are inserted and appended in the
+        * previous and following functions, respectively.*/
+
         $('.contentDisplay').append(`
-            <input type="radio"
-                   name="possibleAnswerTextOrIdForJs"
-                   id="referstolabel"
-                   value="${STORE[score].options[i]}"
-                   required
-            />
-            <label for="referstolabel">${STORE[score].options[i]}</label>
-            <br>
+                <div class="options">
+                    <input type="radio"
+                        name="optionChoice"
+                        id="${STORE[current].options[i]}"
+                        value="${STORE[current].options[i]}"
+                    />
+                    <label for="${STORE[current].options[i]}">${STORE[current].options[i]}</label>
+                </div>
         `);
     }
     addSubmitButton();
@@ -121,7 +124,7 @@ function createOptionList() {
 
 function addSubmitButton(){
     $('.contentDisplay').append(`
-                <button type="submit" class="submitAnswer"> Submit</button>
+                <button type="submit" class="submitAnswer button"> Submit</button>
             </fieldset>
         </form>
     `);
@@ -129,19 +132,29 @@ function addSubmitButton(){
 
 function displayScore() {
     $('.alertArea').html(`
-        <p>Question number ${score+1}/${STORE.length} - You have ${right} correct!</p>
+        <p>Question number ${current+1}/${STORE.length} - You have ${right} correct!</p>
     `);
 }
 
 function updateScore() {
-    score++;
+    current++;
+}
+
+function emptySubmitDialog() {
+    $('.alertArea').html(`
+        <p class="alert">Choose an option, please.</p>
+    `);
+    /* setTimeout(() => $('.alertArea').html(`
+        <h2>Choose an option, man.</h2>
+    `), 4000); */
+    setTimeout(displayScore, 4000);
 }
 
 function submitAnswerClick () {
     $('.submitAnswer').on('click', function(event) {
         event.preventDefault();
-        if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === undefined) {
-            alert('Please choose an answer');
+        if ($('input[name=optionChoice]:checked').val() === undefined) {
+            emptySubmitDialog();
         } else {
             verifyAnswer();
             $('.alertArea').html(displayScore())
@@ -151,22 +164,24 @@ function submitAnswerClick () {
     })
 }
 
+
+
 function verifyAnswer () {
-    if ($('input[name=possibleAnswerTextOrIdForJs]:checked').val() === STORE[score].answer) {
+    if ($('input[name=optionChoice]:checked').val() === STORE[current].answer) {
         $('.contentDisplay').html(`
-             <p>Good Job "${STORE[score].answer}" is right!</p>
-             <img alt="${STORE[score].answer}" src="images/${score+1}.jpg" width="200" height="200">
+             <div class="headline"><p><h2>Good Job "${STORE[current].answer}" is right!</h2></p></div>
+             <img class="image" alt="${STORE[current].answer}" src="images/${current+1}.jpg" width="200" height="200">
              <form>
-                 <button type="nextQuestion" class="nextQuestion">Next Question</button>
+                 <button type="submit" class="nextQuestion button">Next</button>
              </form>
         `);
         right++;
     } else {
         $('.contentDisplay').html(`
-            <p>Nope, it's actually "${STORE[score].answer}"</p>
-            <img alt="${STORE[score].answer}" src="images/${score+1}.jpg" width="200" height="200">
+            <div class="headline"><p><h2>Nope, it's actually "${STORE[current].answer}"</h2></p></div>
+            <img class="image" alt="${STORE[current].answer}" src="images/${current+1}.jpg">
             <form>
-                 <button type="nextQuestion" class="nextQuestion">Next Question</button>
+                 <button type="submit" class="nextQuestion button">Next</button>
             </form>
         `);
     }
@@ -175,12 +190,11 @@ function verifyAnswer () {
 function displayRestart() {
     $('.contentDisplay').html(`
         <section>
-            <h2>You got ${right}/${STORE.length} correct!</h2>
+            <p class="headline">You got ${right}/${STORE.length} correct!</p>
             <p>Want to try again?</p>
-            <img alt="cyclists on top of a hill" src="images/end.jpg"
-         width="200" height="200">
+            <img class="image" alt="cyclists on top of a hill" src="images/end.jpg">
             <form>
-                <button type="restartQuiz" class="restartQuiz">Restart Quiz</button>
+                <button type="restart" class="restartQuiz button">Restart</button>
             </form>
         </section>`
     );
@@ -190,16 +204,16 @@ function displayRestart() {
 function restartQuizClick(){
     $('.restartQuiz').on('click', function(event) {
         event.preventDefault();
-        score = 0;
+        current = 0;
         right = 0;
-        test();
+        startQuiz();
     });
 }
 
 function nextQuestionClick () {
     $('.nextQuestion').on('click', function(event) {
         event.preventDefault();
-        if (score < STORE.length) {
+        if (current < STORE.length) {
             $('.contentDisplay').html(displayNextQuestion());
         }
         else {
@@ -208,8 +222,4 @@ function nextQuestionClick () {
     });
 }
 
-function callBack () {
-    test ();
-}
-
-callBack();
+startQuiz();

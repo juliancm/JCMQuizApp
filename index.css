@@ -4,10 +4,9 @@
 
 body {
     font-family: 'Source Sans Pro', sans-serif;
-    color: black;
-    margin: auto;
+    font-size: 12px;
+    flex-direction: row;
     background-color: lightblue;
-    display: block;
 }
 
 header {
@@ -16,42 +15,147 @@ header {
 
 h1 {
     line-height: 100px;
-    font-size: 50px;
+    font-size: 40px;
+}
+
+.image {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 250px;
+    height: auto;
+    object-fit: contain;
 }
 
 .contentDisplay {
-    display: block;
     line-height: 20px;
     width: 300px;
     padding: 10px;
-    border: 2px solid black;
+    border: 2px solid darkgray;
     border-radius: 15px;
-    margin: 0 auto;
-    line-height: 40px;
+    margin:  auto;
+    margin-bottom: 20px;
+    line-height: 15px;
     text-align: center;
     background-color: aliceblue;
 }
 
 footer {
-    display: block;
+    flex-direction: row;
     line-height: 40px;
-    border: 2px solid black;
+    border: 2px solid darkgray;
     border-radius: 15px;
-    margin: 0 auto;
-    width: 350px;
+    margin:  auto;
+    margin-bottom: 30px;
+    width: 300px;
     padding: 10px;
     text-align: center;
     background-color: aliceblue;
 }
 
-@media only screen and (max-width: 400px) {
+.headline {
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.alert {
+    color: darkred;
+    font-weight: bold;
+}
+
+.question {
+    width: 90%;
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.button {
+    font-weight: bold;
+    background-color: midnightblue;
+    color: white;
+    padding: 10px;
+    border: solid darkgray;
+    border-radius: 10px;
+    margin:20px;
+    width: 90px;
+    height: 40px;
+}
+
+.options {
+    width: 100%;
+    text-align: left;
+    line-height: 30px;
+}
+
+.option-prompt {
+    line-height: 30px;
+}
+
+@media only screen and (min-width: 480px) {
+
+    .options {
+        line-height: 40px;
+    }
+
+    .option-prompt {
+        line-height: 0px;
+    }
+
+
+    .image {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 350px;
+        object-fit: contain;
+    }
+
+    body{
+        font-size: 14px;
+    }
+
     h1 {
-        font-size: 40px;
+        font-size: 50px;
     }
     .contentDisplay {
-        width: 250px;
+        line-height: 30px;
+        width: 450px;
     }
     footer {
-        width: 300px;
+        width: 450px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+
+    .options {
+        line-height: 50px;
+    }
+
+    .option-prompt {
+        line-height: 50px;
+    }
+
+    .image {
+        width: 600px;
+        object-fit: contain;
+    }
+
+    body{
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 70px;
+    }
+
+    .contentDisplay {
+        line-height: 40px;
+        width: 700px;
+    }
+
+    footer {
+        width: 700px;
     }
 }
