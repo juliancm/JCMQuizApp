@@ -5,7 +5,6 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 12px;
-    flex-direction: row;
     background-color: lightblue;
 }
 
@@ -30,6 +29,7 @@ h1 {
     line-height: 20px;
     width: 300px;
     padding: 10px;
+    padding-top: 20px;
     border: 2px solid darkgray;
     border-radius: 15px;
     margin:  auto;
@@ -40,7 +40,6 @@ h1 {
 }
 
 footer {
-    flex-direction: row;
     line-height: 40px;
     border: 2px solid darkgray;
     border-radius: 15px;
@@ -65,10 +64,12 @@ footer {
 }
 
 .question {
-    width: 90%;
+    width: 80%;
     text-align: left;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 20px;
+    margin-top: 50px;
+    font-weight: bold;
 }
 
 .button {
@@ -103,6 +104,9 @@ footer {
         line-height: 40px;
     }
 
+    .question {
+        width: 90%;
+    }
 
     .image {
         margin-top: 20px;
@@ -142,6 +146,10 @@ footer {
         object-fit: contain;
     }
 
+    .question {
+        width: 100%;
+    }
+
     body{
         font-size: 20px;
     }
@@ -151,11 +159,13 @@ footer {
     }
 
     .contentDisplay {
+        border: 3px solid darkgray;
         line-height: 40px;
         width: 700px;
     }
 
     footer {
+        border: 3px solid darkgray;
         width: 700px;
     }
 }

@@ -94,7 +94,7 @@ function displayNextQuestion () {
     $('.contentDisplay').html(`
         <form>
             <fieldset>
-                <section class="headline question"><legend><h2>${STORE[current].question}</h2></legend></section>
+                <legend class="question">${STORE[current].question}</legend>
                 <label class="option-prompt">Choose one option:</label>
     `);
     addOptionList();
@@ -112,10 +112,10 @@ function addOptionList() {
                 <div class="options">
                     <input type="radio"
                         name="optionChoice"
-                        id="${STORE[current].options[i]}"
+                        id="${i}"
                         value="${STORE[current].options[i]}"
                     />
-                    <label for="${STORE[current].options[i]}">${STORE[current].options[i]}</label>
+                    <label for="${i}">${STORE[current].options[i]}</label>
                 </div>
         `);
     }
@@ -169,7 +169,7 @@ function submitAnswerClick () {
 function verifyAnswer () {
     if ($('input[name=optionChoice]:checked').val() === STORE[current].answer) {
         $('.contentDisplay').html(`
-             <div class="headline"><p><h2>Good Job "${STORE[current].answer}" is right!</h2></p></div>
+             <p class="headline">Good Job "${STORE[current].answer}" is right!</p>
              <img class="image" alt="${STORE[current].answer}" src="images/${current+1}.jpg" width="200" height="200">
              <form>
                  <button type="submit" class="nextQuestion button">Next</button>
@@ -178,7 +178,7 @@ function verifyAnswer () {
         right++;
     } else {
         $('.contentDisplay').html(`
-            <div class="headline"><p><h2>Nope, it's actually "${STORE[current].answer}"</h2></p></div>
+            <p class="headline">Nope, it's actually "${STORE[current].answer}"</p>
             <img class="image" alt="${STORE[current].answer}" src="images/${current+1}.jpg">
             <form>
                  <button type="submit" class="nextQuestion button">Next</button>
@@ -194,7 +194,7 @@ function displayRestart() {
             <p>Want to try again?</p>
             <img class="image" alt="cyclists on top of a hill" src="images/end.jpg">
             <form>
-                <button type="restart" class="restartQuiz button">Restart</button>
+                <button type="reset" class="restartQuiz button">Restart</button>
             </form>
         </section>`
     );
