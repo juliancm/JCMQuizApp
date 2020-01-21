@@ -75,6 +75,7 @@ footer {
     font-weight: bold;
     background-color: midnightblue;
     color: white;
+    padding: 10px;
     border: solid darkgray;
     border-radius: 10px;
     margin:20px;
