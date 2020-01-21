@@ -62,6 +62,8 @@ const loggers = {
     score: 0
 }
 
+/* global variables used in various functions */
+
 let current = loggers.question;
 let right = loggers.score;
 
