@@ -29,7 +29,6 @@ h1 {
     line-height: 20px;
     width: 300px;
     padding: 10px;
-    padding-top: 10px;
     border: 2px solid darkgray;
     border-radius: 15px;
     margin:  auto;
@@ -68,7 +67,7 @@ footer {
     text-align: left;
     margin-left: 20px;
     margin-right: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
     font-weight: bold;
 }
 
@@ -147,7 +146,7 @@ footer {
     }
 
     .question {
-        width: 100%;
+        width: 90%;
     }
 
     body{
